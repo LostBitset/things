@@ -1,6 +1,6 @@
 # Home
 
-This is a place for me to put stuff. Here is some stuff:
+This is a place for me to put things. Here are some things:
 + [::/new-location.md]
 + [::/galois-counter-mode.md]
 + [::/galois-fields.md]
