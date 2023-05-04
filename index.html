@@ -1,0 +1,84 @@
+<!DOCTYPE html lang="en">
+<html>
+    <head>
+        <title>@LostBitset's Things</title>
+        <style>
+        .content {
+            width: 65%;
+            margin: auto;
+        }
+        code {
+            white-space: pre-wrap !important;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="active-content" class="content">Loading...</div>
+        <!-- Marked --> <script src="https://cdn.jsdelivr.net/npm/marked@4.2.12/lib/marked.umd.js" integrity="sha384-TA9yS5E3JMpd6X4UAxmo93M53TO5tS2pVol6cwZ22r8rRfGBCsp/rZS1nPBy7Qos" crossorigin="anonymous"></script>
+        <!-- KaTeX css --> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+        <!-- KaTeX --> <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+        <!-- KaTeX ext auto-render --> <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+        <!-- Highlight.js css --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" integrity="sha384-4Y0nObtF3CbKnh+lpzmAVdAMtQXl+ganWiiv73RcGVdRdfVIya8Cao1C8ZsVRRDz" crossorigin="anonymous">
+        <!-- Highlight.js --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" integrity="sha384-4l+9bhb7rakZ18megzl0/DWczL8ojbDl1jIEzBVffeMho9A6xB/lkqt1K0PC8Jin" crossorigin="anonymous"></script>
+        <!-- Highlight.js ext clojure --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/clojure.min.js" integrity="sha384-8JWkp32oWTEVxxtNrzFvXIT0dEfL3iIzNnscjiUdgvFNq4G2o/kfRsL6fgojtVZ2" crossorigin="anonymous"></script>
+        <!-- Highlight.js ext haskell --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/haskell.min.js" integrity="sha384-79CckMIS/53CIAfoXYNgd9QOEiM92p6MqdXPU4sb+tHagf7VF5pJJVducFmOL2hK" crossorigin="anonymous"></script>
+        <!-- Highlight.js ext scala --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/scala.min.js" integrity="sha384-aL4V34PqQVriBR8ATtOb1lJAmcaN30ZXYHb89tbVLMZ+NN7g49RW/p+GrIO22RIQ" crossorigin="anonymous"></script>
+        <!-- Highlight.js ext dart --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/dart.min.js" integrity="sha384-kCBQ3kQJRNsdWCWsOKi08Bjgd0ESBgbf8O25xuuKMWMFUf0qRr+PTzSzgiYrDpzE" crossorigin="anonymous"></script>
+        <!-- Highlight.js ext elm --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/elm.min.js" integrity="sha384-WFIUIocLL6tNQ4j+decNLFJda+Y6tbF8RZwI2YKFGuh69TPKGJJwhX/nZ9hQp09r" crossorigin="anonymous"></script>
+        <!-- Highlight.js ext latex --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/latex.min.js" integrity="sha384-LoBb47ALy/C0u+Dp9Y5Xw7NXFVA9wTY48ZA7my3KgPLS7cbfdJvMED5OtxOmAyXP" crossorigin="anonymous"></script>
+        <!-- Highlight.js ext nim --> <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/nim.min.js" integrity="sha384-dOT7KM4RtO3aID6IVcP9VlmVOPYv7uDOOYEmoK9G3RSUpuk1WTtlw/s7xMEaUrIx" crossorigin="anonymous"></script>
+        <script>
+        const contentroot = "<TODO REPLACE THIS>";
+        const hashpfx = "#::";
+        const suffix = "\n\n<!-- not in original file -->\nReturn to home: [::/]\n";
+        const elcontent = document.getElementById("active-content");
+
+        function renderMathInContent() {
+            renderMathInElement(elcontent, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                ],
+                throwOnError: true,
+            });
+        }
+
+        function updateActiveContent(markdown) {
+            window.log_contentUsed = markdown;
+            let withlinks = markdown.replace(/\[\:\:([^\]]+)\]/g, "[\\[ $1 \\]](#::$1 \"Local Link: $1\")");
+            let withgroups = withlinks.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}");
+            window.log_contentFixed = withgroups;
+            let html = marked.parse(withgroups);
+            window.log_contentMarkdown = html;
+            elcontent.innerHTML = html;
+            renderMathInContent();
+            hljs.highlightAll();
+        }
+
+        async function loadPath(path) {
+            let urlpath = `${contentroot}${path}${path.endsWith(".md")?"":"index.md"}`;
+            window.log_contentUrl = urlpath;
+            let resp = await fetch(urlpath);
+            let markdown = await resp.text();
+            window.log_contentRetrieved = markdown;
+            updateActiveContent(markdown + suffix);
+            window.scrollTo(0, 0);
+        }
+
+        async function load() {
+            let hash = window.location.hash;
+            if (hash.startsWith(hashpfx)) {
+                await loadPath(hash.substring(hashpfx.length));
+            } else {
+                if (hash !== "") {
+                    console.log(`WARN> Bad fragment "${hash}", must start with "${hashpfx}". `);
+                }
+                window.location = "#::/";
+            }
+        }
+
+        window.addEventListener("hashchange", load);
+        window.addEventListener("DOMContentLoaded", load);
+        </script>
+    </body>
+</html>
