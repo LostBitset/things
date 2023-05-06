@@ -5,6 +5,7 @@
 Everything about the Kajmandea language (and it's dominant orthography, Kajmandea Demalã), can be found in the following repo: [LostBitset/kajmandea](https://github.com/LostBitset/kajmandea). This is just a slightly cut down description of the language, all in one document. 
 
 Kajmandea is not compatible with traditional Mando'a orthographies, and a system known as Kajmandea Demalã is used instead. The following basic transliterations are typically used, with all other sounds transliterated as their IPA equivalent:
+
 | Sound (IPA) | Basic Transliteration |
 |-------------|-----------------------|
 | ʃ           | c                     |
@@ -18,6 +19,7 @@ With all of that out of the way, here's how to speak Kajmandea.
 ## Phonology: Consonants
 
 The following consonant sound changes occur:
+
 | Mando'a         | Kajmandea |
 |-----------------|-----------|
 | vh              | bj        |
@@ -30,6 +32,7 @@ Any h following a consonant or as the coda (ending) of a syllable, which usually
 ## Phonology: Vowels and Vowel Harmony
 
 The following vowels exist Kajmandea, divided into three groups participating in vowel harmony and a "neutral" group:
+
 | Front | Front-lax | Back  | Neutral |
 |-------|-----------|-------|---------|
 | a     |           | õ (ɔ) |         |
@@ -49,6 +52,7 @@ There are four rules that ensure vowel harmony:
 Unlike traditional Mando'a, Kajmandea indicates tense, mood, and negation using verb inflections. There are two versions of these inflections, for the front and back vowel groups. It also makes no distinction between the ordinary positive conjugation of a verb and the infinitive form. This is called the normal form. For example, oyõlã means both "hunt" and "hunting". 
 
 To conjugate a verb in a specific tense or mood, drop the ã from the normal form, and then use the following table:
+
 | Tense/Mood  | Front | Back  | Example  | Ex. Meaning    |
 |-------------|-------|-------|----------|----------------|
 | Normal      |       |       | epalã    | eat or eating  |
