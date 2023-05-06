@@ -21,13 +21,20 @@ The following consonant sound changes occur:
 | Mando'a         | Kajmandea |
 |-----------------|-----------|
 | vh              | bj        |
-| ch              | ç         |
-| End of verb "r" | lã        |
+| ch              | ç (ʒ)     |
+| End of verb "r" | lã (lə)   |
 | '               | Elide     |
 
 Any h following a consonant or as the coda (ending) of a syllable, which usually indicates aspiration, is simply dropped. The exception here is vh, as it has it's own transformation. For example, cin vhetin becomes syn bjetin. Everything in the table is just a simple substitution (or deletion). For example, chaab ("fear") becomes çaab. 
 
 ## Phonology: Vowels and Vowel Harmony
+
+The following vowels exist Kajmandea, divided into three groups participating in vowel harmony and a "neutral" group:
+| Front | Front-lax | Back  | Neutral |
+|-------|-----------|-------|---------|
+| a     |           | õ (ɔ) |         |
+| e     |           | o     | ã (ə)   |
+| i     | y (ɪ)     | u     |         |
 
 There are four rules that ensure vowel harmony:
 - If a word contains only sounds from the bottom row, every vowel becomes y. An important exception is dipthongs. The word for "parent", buir, becomes buur, not byr. 
