@@ -1,6 +1,7 @@
 # Home
 
 This is a place for me to put things. Here are some things:
++ [::/carry-lookahead-adders.md]
 + [::/bad-apple-on-a-mosfet.md]
 + [::/a-new-location.md]
 + [::/galois-counter-mode.md]
